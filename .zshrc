@@ -105,8 +105,14 @@ ttyctl -f
 # No ttyctl, so we need to save and then restore terminal settings
 vim()
 {
+
+    local os="`uname -a | cut -d ' ' -f 1`"
     # osx users, use stty -g
-    local STTYOPTS="$(stty --save)"
+    if [ "$os" = "Darwin" ]; then
+        local STTYOPTS="$(stty -g)"
+    else
+        local STTYOPTS="$(stty --save)"
+    fi
     stty stop '' -ixoff
     command vim "$@"
     stty "$STTYOPTS"
