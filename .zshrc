@@ -81,6 +81,8 @@ source $ZSH/oh-my-zsh.sh
 alias wwwww=cd\ /Library/WebServer/Documents
 if [ "$(uname)" = "Linux" ]; then
     alias sharevm=cd\ /mnt/hgfs/Share_Local/
+elif [ "$(uname)" = "Darwin" ]; then
+    alias sharevm=cd\ ~/Dropbox/ShareVM
 fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
