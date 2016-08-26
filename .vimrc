@@ -1,6 +1,7 @@
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set cursorline
 set number
+set nowrap
 syntax on
 
 " If the current buffer has never been saved, it will have no name,

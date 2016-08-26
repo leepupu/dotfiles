@@ -78,11 +78,37 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+function ida() {
+    if [ $# = 0 ]; then
+        echo 'no arg';
+    else
+        echo 'have arg';
+        echo "$1";
+        str=$(file "$1" | sed 's/.*:\ //')
+        typ=$(echo "$str" | cut -d ' ' -f 1)
+        arch=$(echo "$str" | cut -d ' ' -f 2)
+        echo "type is $typ, arch is $arch";
+        if [ "$typ" = "ELF" ]; then
+            if [ $arch = "32-bit" ]; then
+                wine "/Users/leepupu/Desktop/IDA 6.6/idaq.exe" $1 &>/dev/null &
+            else
+                wine "/Users/leepupu/Desktop/IDA 6.6/idaq64.exe" $1 &>/dev/null &
+            fi
+        else
+            echo 'This is not ELF'
+        fi
+    fi
+}
+
 alias wwwww=cd\ /Library/WebServer/Documents
 if [ "$(uname)" = "Linux" ]; then
     alias sharevm=cd\ /mnt/hgfs/Share_Local/
 elif [ "$(uname)" = "Darwin" ]; then
     alias sharevm=cd\ ~/Dropbox/ShareVM
+    export PATH="/Users/leepupu/Applications/Wine Devel.app/Contents/Resources/start/bin:/Users/leepupu/Applications/Wine Devel.app/Contents/Resources/wine/bin:$PATH"
+    # alias ida=wine\ "~/Desktop/IDA\ 6.6/idaq.exe"
+    export ttexp
 fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
