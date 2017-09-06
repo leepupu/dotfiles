@@ -176,5 +176,8 @@ bindkey -s "^[Oo" "/"
 bindkey "^[[D" backward-word
 bindkey "^[[C" forward-word
 
-
-
+if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
+    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    export WORKON_HOME=/home/leepupu/.virtualenvs
+    export PIP_VIRTUALENV_BASE=/home/leepupu/.virtualenvs
+fi
